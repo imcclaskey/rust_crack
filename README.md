@@ -1,10 +1,12 @@
 # rust_crack
 Rust Code Lock Cracker
 
-Prerequsites:
-- You need to download win32api
+##Prerequsites:
 
-How To Use:
+You need to install win32api
+
+##How To Use:
+
 1. Open Rust.
 2. Remap 'use' key to Right Click.
 3. Launch in Windowed Mode (or fullscreen; not confirmed).
