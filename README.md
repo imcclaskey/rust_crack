@@ -1,7 +1,7 @@
 # rust_crack
 Rust Code Lock Cracker
 
-##Prerequsites:
+##Prerequisites:
 
 You need to install win32api
 
