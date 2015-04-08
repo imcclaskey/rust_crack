@@ -39,7 +39,7 @@ def write_char(window, char):
 
 def break_key(window):
     time.sleep(3)
-    for i in range(0, 1000):
+    for i in range(0, 10000):
         # right click to open keypad
         time.sleep(.5)
         right_click(960, 540, window)
