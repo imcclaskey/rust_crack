@@ -2,17 +2,19 @@ __author__ = 'fuckboy'
 
 import win32api, win32con, win32gui, win32ui
 import time
+from Tkinter import *
+
 
 key_pad = {
-    '0': [900,  670],
-    '1': [900,  600],
-    '2': [950,  600],
+    '0': [900, 670],
+    '1': [900, 600],
+    '2': [950, 600],
     '3': [1025, 600],
-    '4': [900,  550],
-    '5': [950,  550],
+    '4': [900, 550],
+    '5': [950, 550],
     '6': [1025, 550],
-    '7': [900,  475],
-    '8': [950,  475],
+    '7': [900, 475],
+    '8': [950, 475],
     '9': [1025, 475],
 }
 
@@ -37,9 +39,9 @@ def write_char(window, char):
     window.UpdateWindow()
 
 
-def break_key(window):
+def break_key(window, s, f):
     time.sleep(3)
-    for i in range(0, 10000):
+    for i in range(s, f):
         # right click to open keypad
         time.sleep(.5)
         right_click(960, 540, window)
@@ -71,8 +73,49 @@ def get_window_handle():
     return hwnds['UnityWndClass']
 
 
-def run():
+def run_break(start, finish):
     handle = get_window_handle()
     window = create_window(handle)
     time.sleep(2)
-    break_key(window)
+    s = start.get()
+    f = finish.get() + 1
+    break_key(window, s, f)
+
+
+def build_gui():
+    # Main window
+    root = Tk()
+    root.title("RustBreaker")
+    root.geometry("200x50")
+
+    # Frames
+    top_frame = Frame(root)
+    top_frame.pack()
+    bottom_frame = Frame(root)
+    bottom_frame.pack(side=BOTTOM)
+
+    # Field variables
+    start = IntVar()
+    finish = IntVar()
+
+    # Starting value field
+    code_start = Entry(top_frame, width=4, textvariable=start)
+    code_start.pack(side=LEFT)
+    code_start.focus_set()
+
+    # Finish value field
+    code_finish = Entry(top_frame, width=4, textvariable=finish)
+    code_finish.pack(side=RIGHT)
+
+    # Execute button
+    break_button = Button(bottom_frame, text="Run Break", command=lambda: run_break(start, finish))
+    break_button.pack()
+
+    # Text label
+    to = Label(top_frame, text="     to     ")
+    to.pack()
+
+    # Main loop
+    root.mainloop()
+
+build_gui()
